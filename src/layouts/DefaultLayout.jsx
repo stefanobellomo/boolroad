@@ -4,7 +4,9 @@ export default function DefaultLayout() {
     return (
         <>
             <header></header>
-            <Outlet />
+            <main>
+                <Outlet />
+            </main>
             <footer></footer>
         </>
     )
