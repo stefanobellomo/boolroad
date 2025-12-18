@@ -1,8 +1,11 @@
 import { useParams } from "react-router-dom"
 import journeysData from "../assets/journeysData"
-import { useEffect, useState } from "react"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 export default function JourneyPage() {
+
+
 
     const [data, setData] = useState(journeysData)
     const [search, setSearch] = useState('')
@@ -14,6 +17,8 @@ export default function JourneyPage() {
         const fullName = `${partecipante.nome} ${partecipante.cognome}`.toLowerCase()
         return fullName.includes(search.toLowerCase())
     })
+
+    const navigate = useNavigate()
 
     return (
         <section className="journey">
@@ -37,6 +42,10 @@ export default function JourneyPage() {
                         </div>
                     ))}
 
+                </div>
+
+                <div className="back d-flex justify-content-center my-3">
+                    <button className="btn btn-dark" onClick={() => (navigate("/"))}>Torna indietro</button>
                 </div>
             </div>
         </section>
