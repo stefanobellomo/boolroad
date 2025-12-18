@@ -6,10 +6,10 @@ import { useNavigate } from "react-router-dom"
 export default function JourneyPage() {
 
 
-
     const [data, setData] = useState(journeysData)
     const [search, setSearch] = useState('')
     const { id } = useParams()
+    const [active, setActive] = useState(0)
 
     const current = data.find(current => Number(id) === current.id)
 
@@ -31,23 +31,50 @@ export default function JourneyPage() {
                     value={search}
                     onChange={(e) => setSearch(e.target.value)} />
 
-                <div className="row row-cols-2">
+                <div className="row row-cols-1">
 
-                    {filteredPartecipanti.map(user => (
-                        <div key={user.id} className="col">
-                            <div className="card mt-3">
-                                <h6>{user.nome}</h6>
-                                <h6>{user.cognome}</h6>
-                            </div>
-                        </div>
-                    ))}
+                    <div className="accordion">
+                        {filteredPartecipanti.map(user => {
+                            const headingId = `heading-${user.id}`;
+                            const collapseId = `collapse-${user.id}`;
+
+                            return (
+                                <div key={user.id} className="accordion-item">
+                                    <h2 className="accordion-header" id={headingId}>
+                                        <button
+                                            className="accordion-button collapsed"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target={`#${collapseId}`}
+                                            aria-expanded="false"
+                                            aria-controls={collapseId}
+                                        >
+                                            {user.nome} {user.cognome}
+                                        </button>
+                                    </h2>
+
+                                    <div
+                                        id={collapseId}
+                                        className="accordion-collapse collapse"
+                                        aria-labelledby={headingId}
+                                    >
+                                        <div className="accordion-body">
+                                            <p>CF: {user.codice_fiscale}</p>
+                                            <p>N. Cellulare: {user.numero}</p>
+                                            <p>Email: {user.email}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
 
                 </div>
 
-                <div className="back d-flex justify-content-center my-3">
+                <div className="back d-flex ms-auto justify-content-center my-3">
                     <button className="btn btn-dark" onClick={() => (navigate("/"))}>Torna indietro</button>
                 </div>
             </div>
-        </section>
+        </section >
     )
 }

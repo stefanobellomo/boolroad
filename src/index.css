@@ -11,5 +11,40 @@ a {
 }
 
 main {
-    height: 500px;
+    height: 800px;
+}
+
+/* Riquadro immagine */
+.image-box {
+    width: 400px;
+    background-color: #8ecae6;
+    height: 400px;
+    border-radius: 25px 5px 5px 25px;
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Riquadro con le informazioni */
+
+#info-card {
+    justify-content: center;
+    align-items: center;
+
+    #container-button {
+        align-items: center;
+    }
+
+    .content-box {
+        justify-content: space-around;
+        height: 260px;
+        text-align: center;
+        width: 380px;
+        padding: 25px;
+        border-radius: 0 25px 25px 0;
+    }
+
 }

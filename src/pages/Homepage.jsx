@@ -1,6 +1,6 @@
 import journeysData from "../assets/journeysData"
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import Card from "../components/Card";
 
 export default function Homepage() {
 
@@ -13,14 +13,8 @@ export default function Homepage() {
                 <div className="row row-cols-2 row-cols-lg-3 mt-3">
 
                     {data.map(journey => (
-                        <div className="col" key={journey.id}>
-                            <Link to={`/${journey.id}`}>
-                                <div className="card mt-3">
-                                    <h2>{journey.meta}</h2>
-                                    <h6>{journey.data_partenza}</h6>
-                                    <h6>{journey.data_ritorno}</h6>
-                                </div>
-                            </Link>
+                        <div className="col p-4">
+                            <Card key={journey.id} image={journey.immagine} title={journey.meta} inizio={journey.data_partenza} fine={journey.data_ritorno} link={`/${journey.id}`} />
                         </div>
                     ))}
 
