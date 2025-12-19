@@ -8,7 +8,7 @@ export default function Header() {
                 <nav className="navbar navbar-light" >
                     <div className="container">
                         <NavLink to='/'>
-                            <img src={"/Boo-Road.png"} alt="" style={{ height: "90px" }} />
+                            <img src={"/Boo-Road.png"} alt="" style={{ height: "150px" }} />
                         </NavLink>
                         <NavLink className='nav-link text-white' to='/'>
                             <span className="fw-bold fs-5">Home</span>
