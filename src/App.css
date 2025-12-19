@@ -1,0 +1,38 @@
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* GENERICS */
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+/* UTILS */
+
+.card:hover {
+    scale: 1.04;
+}
+
+/* ACCORDION */
+
+.accordion-button:not(.collapsed) {
+    background-color: #dfdada;
+}
+
+.bg-accordion {
+    background-color: #e5e2e2;
+}
+
+.text-accordion {
+    color: #052c65;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+}
