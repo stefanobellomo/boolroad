@@ -1,15 +1,15 @@
 import { useParams } from "react-router-dom"
-import journeysData from "../assets/journeysData"
+import database from "../../data"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import DetailsCard from "../components/DetailsCard"
+import { Link } from "react-router-dom"
 
 export default function JourneyPage() {
 
 
-    const [data, setData] = useState(journeysData)
+    const [data, setData] = useState(database)
     const [search, setSearch] = useState('')
     const { id } = useParams()
-    const [active, setActive] = useState(0)
 
     const current = data.find(current => Number(id) === current.id)
 
@@ -18,11 +18,12 @@ export default function JourneyPage() {
         return fullName.includes(search.toLowerCase())
     })
 
-    const navigate = useNavigate()
-
     return (
         <section className="journey">
             <div className="container">
+                <div className="d-flex align-items-center justify-content-center">
+                    <DetailsCard currentjourney={current} />
+                </div>
 
                 <input
                     className="form-control my-3"
@@ -42,7 +43,7 @@ export default function JourneyPage() {
                                 <div key={user.id} className="accordion-item">
                                     <h2 className="accordion-header" id={headingId}>
                                         <button
-                                            className="accordion-button collapsed"
+                                            className="accordion-button collapsed fw-bold"
                                             type="button"
                                             data-bs-toggle="collapse"
                                             data-bs-target={`#${collapseId}`}
@@ -58,10 +59,10 @@ export default function JourneyPage() {
                                         className="accordion-collapse collapse"
                                         aria-labelledby={headingId}
                                     >
-                                        <div className="accordion-body">
-                                            <p>CF: {user.codice_fiscale}</p>
-                                            <p>N. Cellulare: {user.numero}</p>
-                                            <p>Email: {user.email}</p>
+                                        <div className="accordion-body bg-accordion">
+                                            <p><strong className="text-accordion">Codice Fiscale: </strong> {user.codice_fiscale}</p>
+                                            <p><strong className="text-accordion">Cellulare: </strong> {user.numero}</p>
+                                            <p><strong className="text-accordion">Email: </strong> {user.email}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -70,10 +71,10 @@ export default function JourneyPage() {
                     </div>
 
                 </div>
-
-                <div className="back d-flex ms-auto justify-content-center my-3">
-                    <button className="btn btn-dark" onClick={() => (navigate("/"))}>Torna indietro</button>
+                <div className="w-100 d-flex justify-content-center my-5">
+                    <Link to='/' className="btn btn-dark px-5 py-2 rounded "> Torna indietro </Link>
                 </div>
+
             </div>
         </section >
     )
